@@ -2,14 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
 import PostCard from "./PostCard";
-import { bindActionCreators } from "redux";
-
-import { fetchPosts } from "../actions/index";
 
 class PostCardList extends Component {
-  componentWillMount() {
-    this.props.fetchPosts();
-  }
   renderPosts = ({ title, text, votes, comments, id }) => (
     <PostCard
       key={id}
@@ -26,7 +20,5 @@ class PostCardList extends Component {
   }
 }
 const mapStateToProps = ({ posts }) => ({ posts });
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ fetchPosts }, dispatch);
-};
-export default connect(mapStateToProps, mapDispatchToProps)(PostCardList);
+
+export default connect(mapStateToProps)(PostCardList);

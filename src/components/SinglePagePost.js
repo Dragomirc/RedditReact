@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-
 import { v4 } from "uuid";
 import { addComment } from "../actions/index";
 import PostCard from "./PostCard";
@@ -34,6 +32,7 @@ class SinglePagePost extends Component {
   handleChange = event => {
     this.setState({ commentText: event.target.value });
   };
+
   render() {
     const { posts } = this.props;
     const { comments } = posts[this.id];
@@ -41,7 +40,7 @@ class SinglePagePost extends Component {
     return (
       <div>
         <PostCard {...posts[this.id]} />
-        <ul>{comments.map(this.renderComments)}</ul>
+
         <div>{this.state.error}</div>
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -53,13 +52,11 @@ class SinglePagePost extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
+        <ul>{comments.map(this.renderComments)}</ul>
       </div>
     );
   }
 }
 const mapStateToProps = ({ posts }) => ({ posts });
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ addComment }, dispatch);
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SinglePagePost);
+export default connect(mapStateToProps, { addComment })(SinglePagePost);
