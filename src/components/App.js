@@ -12,12 +12,10 @@ class App extends Component {
   //Added for socket.io
   constructor(props) {
     super(props);
-    this.socket = io.connect("http://localhost:3231");
+    this.socket = io.connect("http://localhost:3237");
   }
   componentDidMount() {
-    this.socket.on("initialPosts", data => {
-      this.props.fetchPosts(data);
-    });
+    this.props.fetchPosts(this.socket);
   }
   componentWillUnmount() {
     this.socket.disconnect();
