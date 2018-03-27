@@ -5,10 +5,26 @@ import PostCardList from "./PostCardList";
 import SinglePagePost from "./SinglePagePost";
 import { fetchPosts } from "../actions/index";
 
+//Added for socket.io
+import io from "socket.io-client";
+
 class App extends Component {
-  componentWillMount() {
-    this.props.fetchPosts();
+  //Added for socket.io
+  constructor(props) {
+    super(props);
+    this.socket = io.connect("http://localhost:3231");
   }
+  componentDidMount() {
+    this.socket.on("initialPosts", data => {
+      this.props.fetchPosts(data);
+    });
+  }
+  componentWillUnmount() {
+    this.socket.disconnect();
+  }
+  // componentWillMount() {
+  //   this.props.fetchPosts();
+  // }
   render() {
     return (
       <BrowserRouter>

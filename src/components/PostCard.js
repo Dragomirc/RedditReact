@@ -11,13 +11,13 @@ class PostCard extends Component {
   };
 
   render() {
-    const { title, text, comments, votes, id } = this.props;
+    const { title, description, comments, votes, id } = this.props;
 
     return (
       <li>
         <Link to={`/post/${id}`}>
           <h3>{title}</h3>
-          <p>{text}</p>
+          <p>{description}</p>
           <div>Comments:{comments.length}</div>
         </Link>
         <div>Votes:{votes}</div>

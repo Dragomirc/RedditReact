@@ -6,7 +6,11 @@ export default (state = {}, action) => {
   const currentPost = state[id];
   switch (type) {
     case FETCH_POSTS:
-      return mockApiResponse;
+      // added for socket.io
+      if (payload) {
+        return { ...state, ...payload };
+      }
+    // return mockApiResponse;
 
     case ADD_COMMENT:
       if (payload) {

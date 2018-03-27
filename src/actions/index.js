@@ -1,8 +1,21 @@
 import { FETCH_POSTS, ADD_COMMENT, UPDATE_VOTES } from "./types";
 
-export const fetchPosts = () => {
+// Added for socket.io
+
+// export const fetchPosts = socket => {
+//   return dispatch => {
+//     socket.on("initialPostList", res => {
+//       dispatch({
+//         type: FETCH_POSTS,
+//         payload: res
+//       });
+//     });
+//   };
+// };
+export const fetchPosts = posts => {
   return {
-    type: FETCH_POSTS
+    type: FETCH_POSTS,
+    payload: posts
   };
 };
 export const addComment = (text, id) => {

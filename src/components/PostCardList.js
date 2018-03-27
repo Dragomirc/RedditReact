@@ -4,11 +4,11 @@ import _ from "lodash";
 import PostCard from "./PostCard";
 
 class PostCardList extends Component {
-  renderPosts = ({ title, text, votes, comments, id }) => (
+  renderPosts = ({ title, description, votes, comments, id }) => (
     <PostCard
       key={id}
       title={title}
-      text={text}
+      text={description}
       votes={votes}
       comments={comments}
       id={id}
@@ -16,6 +16,7 @@ class PostCardList extends Component {
   );
 
   render() {
+    console.log(this.props.posts);
     return <ul>{_.map(this.props.posts, this.renderPosts)}</ul>;
   }
 }
