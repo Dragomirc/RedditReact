@@ -1,20 +1,30 @@
 {
   "name": "my-app",
+  "homepage": "https://Dragomirc.github.io/RedditReact/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gh-pages": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",
+    "socket.io": "^2.0.4",
     "uuid": "^3.2.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "concurrently 'npm run react' 'npm run server'",
+    "react": "react-scripts start",
+    "server": "nodemon src/server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
   }
 }
