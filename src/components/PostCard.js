@@ -9,13 +9,12 @@ export default class PostCard extends Component {
         value: value,
         id: id
       });
-      // this.props.updateVotes(value, id);
     }
   };
 
   render() {
     const { title, description, comments, votes, id } = this.props;
-    console.log("Socket", this.props.socket);
+
     return (
       <li>
         <Link to={`/post/${id}`}>
@@ -40,4 +39,3 @@ export default class PostCard extends Component {
     );
   }
 }
-// export default connect(null, { updateVotes })(PostCard);

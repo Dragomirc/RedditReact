@@ -38,7 +38,6 @@ class SinglePagePost extends Component {
   };
 
   render() {
-    console.log("SinglePage socket", this.props.socket);
     const { posts } = this.props;
     if (!Object.keys(posts).length) {
       return <div>Loading...</div>;

@@ -9,11 +9,6 @@ const {
 } = require("./queries");
 server.listen(PORT);
 
-// app.get("/", function(req, res) {
-//   console.log(__dirname + "index.html");
-//   res.sendFile(__dirname + "/index.html");
-// });
-
 io.on("connection", socket => {
   getPostsQuery().then(posts => {
     io.emit("initialPostList", posts);
@@ -28,7 +23,6 @@ io.on("connection", socket => {
       .catch(err => console.log(err));
   });
   socket.on("updateVotes", ({ value, id }) => {
-    console.log("hello from the server", value);
     updateVotesQuery(value, id)
       .then(() => getPostsQuery())
       .then(posts => {

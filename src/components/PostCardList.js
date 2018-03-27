@@ -19,8 +19,6 @@ class PostCardList extends Component {
   };
 
   render() {
-    console.log("PostCardList socket", this.props.socket);
-
     return <ul>{_.map(this.props.posts, this.renderPosts)}</ul>;
   }
 }

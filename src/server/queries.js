@@ -12,7 +12,6 @@ const addCommentQuery = (comment, id) => {
 };
 
 const updateVotesQuery = (value, id) => {
-  console.log("I'm in query");
   return db_connections.query(
     `UPDATE posts SET votes = votes + $1 WHERE id=$2`,
     [value, id]
