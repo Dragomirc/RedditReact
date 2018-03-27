@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { v4 } from "uuid";
-import { addComment } from "../actions/index";
+
 import PostCard from "./PostCard";
 
 class SinglePagePost extends Component {
@@ -25,12 +25,11 @@ class SinglePagePost extends Component {
     if (!this.state.commentText) {
       this.setState({ error: "Please enter a value before submitting" });
     } else {
-      //Added for socket.io
-      // this.props.socket.emit("addComment", {
-      //   commentText: this.state.commentText,
-      //   id: this.id
-      // });
-      this.props.addComment(this.props.socket, this.state.commentText, this.id);
+      this.props.socket.emit("addComment", {
+        commentText: this.state.commentText,
+        id: this.id
+      });
+
       this.setState({ commentText: "", error: "" });
     }
   };
@@ -39,6 +38,7 @@ class SinglePagePost extends Component {
   };
 
   render() {
+    console.log("SinglePage socket", this.props.socket);
     const { posts } = this.props;
     if (!Object.keys(posts).length) {
       return <div>Loading...</div>;
@@ -47,7 +47,7 @@ class SinglePagePost extends Component {
 
     return (
       <div>
-        <PostCard {...posts[this.id]} />
+        <PostCard {...posts[this.id]} socket={this.props.socket} />
 
         <div>{this.state.error}</div>
         <form onSubmit={this.handleSubmit}>
@@ -67,4 +67,4 @@ class SinglePagePost extends Component {
 }
 const mapStateToProps = ({ posts }) => ({ posts });
 
-export default connect(mapStateToProps, { addComment })(SinglePagePost);
+export default connect(mapStateToProps)(SinglePagePost);

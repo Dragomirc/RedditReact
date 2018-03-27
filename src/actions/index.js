@@ -1,6 +1,5 @@
-import { FETCH_POSTS, ADD_COMMENT, UPDATE_VOTES } from "./types";
+import { FETCH_POSTS } from "./types";
 import _ from "lodash";
-// Added for socket.io
 
 export const fetchPosts = socket => {
   return dispatch => {
@@ -13,22 +12,7 @@ export const fetchPosts = socket => {
   };
 };
 
-export const addComment = (socket, commentText, id) => {
-  return dispatch => {
-    socket.emit("addComment", { commentText: commentText, id: id });
-    // dispatch({
-    //   type: ADD_COMMENT,
-    //   payload: text,
-    //   id: id
-    // });
-  };
-};
-
-// this.props.socket.emit("addComment", {
-//   commentText: this.state.commentText,
-//   id: this.id
-// });
-
+//!!!!      Version without socket.io     !!!!
 // export const fetchPosts = posts => {
 //   return {
 //     type: FETCH_POSTS,
@@ -42,11 +26,10 @@ export const addComment = (socket, commentText, id) => {
 //     id: id
 //   };
 // };
-
-export const updateVotes = (value, id) => {
-  return {
-    type: UPDATE_VOTES,
-    payload: value,
-    id: id
-  };
-};
+// export const updateVotes = (value, id) => {
+//   return {
+//     type: UPDATE_VOTES,
+//     payload: value,
+//     id: id
+//   };
+// };

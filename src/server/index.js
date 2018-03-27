@@ -2,7 +2,11 @@ const app = require("express")();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const PORT = process.env.PORT || 3237;
-const { getPostsQuery, addCommentQuery } = require("./queries");
+const {
+  getPostsQuery,
+  addCommentQuery,
+  updateVotesQuery
+} = require("./queries");
 server.listen(PORT);
 
 // app.get("/", function(req, res) {
@@ -16,8 +20,16 @@ io.on("connection", socket => {
   });
 
   socket.on("addComment", ({ commentText, id }) => {
-    console.log("hello from the server", commentText);
     addCommentQuery(commentText, id)
+      .then(() => getPostsQuery())
+      .then(posts => {
+        io.emit("initialPostList", posts);
+      })
+      .catch(err => console.log(err));
+  });
+  socket.on("updateVotes", ({ value, id }) => {
+    console.log("hello from the server", value);
+    updateVotesQuery(value, id)
       .then(() => getPostsQuery())
       .then(posts => {
         io.emit("initialPostList", posts);

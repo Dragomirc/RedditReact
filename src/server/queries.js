@@ -5,10 +5,17 @@ const getPostsQuery = () => {
 };
 
 const addCommentQuery = (comment, id) => {
-  console.log("I'm in query", typeof comment);
   return db_connections.query(
     `UPDATE posts SET comments = comments || '{${comment}}' WHERE id=$1`,
     [id]
   );
 };
-module.exports = { getPostsQuery, addCommentQuery };
+
+const updateVotesQuery = (value, id) => {
+  console.log("I'm in query");
+  return db_connections.query(
+    `UPDATE posts SET votes = votes + $1 WHERE id=$2`,
+    [value, id]
+  );
+};
+module.exports = { getPostsQuery, addCommentQuery, updateVotesQuery };

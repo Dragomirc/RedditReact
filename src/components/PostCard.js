@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { updateVotes } from "../actions/index";
 
-class PostCard extends Component {
+export default class PostCard extends Component {
   onVoteChange = (value, id, currentVotes) => {
     if ((value === -1 && currentVotes > 0) || value === 1) {
-      this.props.updateVotes(value, id);
+      this.props.socket.emit("updateVotes", {
+        value: value,
+        id: id
+      });
+      // this.props.updateVotes(value, id);
     }
   };
 
   render() {
     const { title, description, comments, votes, id } = this.props;
-
+    console.log("Socket", this.props.socket);
     return (
       <li>
         <Link to={`/post/${id}`}>
@@ -37,4 +40,4 @@ class PostCard extends Component {
     );
   }
 }
-export default connect(null, { updateVotes })(PostCard);
+// export default connect(null, { updateVotes })(PostCard);

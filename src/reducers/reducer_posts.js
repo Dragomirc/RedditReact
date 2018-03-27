@@ -12,28 +12,28 @@ export default (state = {}, action) => {
       }
     // return mockApiResponse;
 
-    case ADD_COMMENT:
-      if (payload) {
-        return {
-          ...state,
-          [id]: {
-            ...currentPost,
-            comments: [payload, ...currentPost.comments]
-          }
-        };
-      }
-      break;
-    case UPDATE_VOTES:
-      if (payload) {
-        return {
-          ...state,
-          [id]: {
-            ...currentPost,
-            votes: currentPost.votes + payload
-          }
-        };
-      }
-      break;
+    // case ADD_COMMENT:
+    //   if (payload) {
+    //     return {
+    //       ...state,
+    //       [id]: {
+    //         ...currentPost,
+    //         comments: [payload, ...currentPost.comments]
+    //       }
+    //     };
+    //   }
+    //   break;
+    // case UPDATE_VOTES:
+    //   if (payload) {
+    //     return {
+    //       ...state,
+    //       [id]: {
+    //         ...currentPost,
+    //         votes: currentPost.votes + payload
+    //       }
+    //     };
+    //   }
+    //   break;
     default:
       return state;
   }
