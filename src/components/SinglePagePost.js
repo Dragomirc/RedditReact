@@ -25,7 +25,12 @@ class SinglePagePost extends Component {
     if (!this.state.commentText) {
       this.setState({ error: "Please enter a value before submitting" });
     } else {
-      this.props.addComment(this.state.commentText, this.id);
+      //Added for socket.io
+      // this.props.socket.emit("addComment", {
+      //   commentText: this.state.commentText,
+      //   id: this.id
+      // });
+      this.props.addComment(this.props.socket, this.state.commentText, this.id);
       this.setState({ commentText: "", error: "" });
     }
   };
@@ -35,6 +40,9 @@ class SinglePagePost extends Component {
 
   render() {
     const { posts } = this.props;
+    if (!Object.keys(posts).length) {
+      return <div>Loading...</div>;
+    }
     const { comments } = posts[this.id];
 
     return (

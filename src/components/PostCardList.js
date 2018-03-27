@@ -16,6 +16,8 @@ class PostCardList extends Component {
   );
 
   render() {
+    console.log("Posts", this.props.posts);
+
     return <ul>{_.map(this.props.posts, this.renderPosts)}</ul>;
   }
 }

@@ -2,7 +2,7 @@ const app = require("express")();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const PORT = process.env.PORT || 3237;
-const { get_posts } = require("./queries");
+const { getPostsQuery, addCommentQuery } = require("./queries");
 server.listen(PORT);
 
 // app.get("/", function(req, res) {
@@ -11,24 +11,17 @@ server.listen(PORT);
 // });
 
 io.on("connection", socket => {
-  console.log("Hello");
-  get_posts().then(posts => {
+  getPostsQuery().then(posts => {
     io.emit("initialPostList", posts);
   });
-  // io.emit("initialPostList", {
-  //   1: {
-  //     id: 1,
-  //     title: "React",
-  //     description: "Learn React",
-  //     votes: 0,
-  //     comments: ["It's a very nice article", "When would be lesson 2?"]
-  //   },
-  //   2: {
-  //     id: 2,
-  //     title: "Redux",
-  //     description: "Learn Redux",
-  //     votes: 0,
-  //     comments: ["It's a very nice article", "When would be lesson 2?"]
-  //   }
-  // });
+
+  socket.on("addComment", ({ commentText, id }) => {
+    console.log("hello from the server", commentText);
+    addCommentQuery(commentText, id)
+      .then(() => getPostsQuery())
+      .then(posts => {
+        io.emit("initialPostList", posts);
+      })
+      .catch(err => console.log(err));
+  });
 });

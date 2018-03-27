@@ -14,7 +14,7 @@ class App extends Component {
     super(props);
     this.socket = io.connect("http://localhost:3237");
   }
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchPosts(this.socket);
   }
   componentWillUnmount() {
@@ -28,7 +28,15 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Route exact path="/" component={PostCardList} />
-          <Route exact path="/post/:id" component={SinglePagePost} />
+          <Route
+            exact
+            path="/post/:id"
+            // component={SinglePagePost}
+            //Added for socket.io
+            render={routeProps => (
+              <SinglePagePost {...routeProps} socket={this.socket} />
+            )}
+          />
         </div>
       </BrowserRouter>
     );
