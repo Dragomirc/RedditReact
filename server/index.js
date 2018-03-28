@@ -1,4 +1,7 @@
-const app = require("express")();
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
+const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const PORT = process.env.PORT || 3237;
@@ -7,10 +10,18 @@ const {
   addCommentQuery,
   updateVotesQuery
 } = require("./queries");
-server.listen(PORT);
 
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "../../public/index.html");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(express.static("my-app/build"));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "..", "my-app", "build", "index.html"));
+});
+
+server.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`);
 });
 
 io.on("connection", socket => {

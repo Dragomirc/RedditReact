@@ -1,6 +1,6 @@
 const pgp = require("pg-promise")();
 const url = require("url");
-require("env2")("./config.env");
+require("env2")("./../config.env");
 let options = {};
 
 let DATABASE_URL = process.env.DATABASE_URL;

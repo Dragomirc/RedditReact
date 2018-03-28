@@ -1,35 +1,29 @@
 {
-  "name": "my-app",
-  "homepage": "https://Dragomirc.github.io/RedditReact/",
-  "version": "0.1.0",
-  "private": true,
+  "name": "redditreact",
+  "version": "1.0.0",
+  "main": "index.js",
   "dependencies": {
-    "concurrently": "^3.5.1",
-    "env2": "^2.2.0",
-    "gh-pages": "^1.1.0",
-    "pg-promise": "^8.2.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "sass": "^1.1.1",
-    "socket.io": "^2.0.4",
-    "uuid": "^3.2.1"
+    "concurrently": "^3.5.1"
   },
+  "devDependencies": {},
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "concurrently 'npm run react' 'npm run server'",
-    "react": "react-scripts start",
-    "server": "nodemon src/server/index.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "install": "(cd client && npm) && (cd server && npm)",
+    "start":
+      "concurrently \"cd my-app && PORT=3000 npm start\" \"cd server && PORT=3237 npm start\"",
+    "build":
+      "concurrently \"cd client && npm build\" \"cd server && npm build\"",
+    "start:prod": "cd server && npm start:prod",
+    "heroku-postbuild": "yarn build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "nodemon": "^1.17.2"
-  }
+  "engines": {
+    "node": "8.7.0"
+  },
+
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dragomirc/RedditReact/issues"
+  },
+  "homepage": "https://github.com/Dragomirc/RedditReact#readme"
 }
