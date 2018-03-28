@@ -7,7 +7,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "install": "(cd client && npm) && (cd server && npm)",
+    "install": "(cd my-app && npm) && (cd server && npm)",
     "start":
       "concurrently \"cd my-app && PORT=3000 npm start\" \"cd server && PORT=3237 npm start\"",
     "build":
