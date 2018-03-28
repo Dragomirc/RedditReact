@@ -13,6 +13,7 @@
       "concurrently \"cd my_app && npm build\" \"cd server && npm build\"",
     "start:prod": "cd server && npm start:prod",
     "heroku-postbuild": "npm build",
+    "install": "(cd client && npm) && (cd server && npm)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
