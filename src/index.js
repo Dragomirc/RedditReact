@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import App from "./components/App";
 import reducers from "./reducers";
+import "./index.css";
 import registerServiceWorker from "./registerServiceWorker";
 
 const store = createStore(reducers, {}, applyMiddleware(thunk));

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
 export default class PostCard extends Component {
   onVoteChange = (value, id, currentVotes) => {
@@ -13,29 +12,27 @@ export default class PostCard extends Component {
   };
 
   render() {
-    const { title, description, comments, votes, id } = this.props;
-
+    const { title, text, comments, votes, id } = this.props;
     return (
-      <li>
+      <div className="post_card_container">
         <Link to={`/post/${id}`}>
-          <h3>{title}</h3>
-          <p>{description}</p>
+          <h3>Title: {title}</h3>
+          <p>Descritpion:{text}</p>
           <div>Comments:{comments.length}</div>
         </Link>
-        <div>Votes:{votes}</div>
-        <div>
+        <div className="post_card_container_icons">
           <i
             className="fa fa-arrow-circle-up"
             onClick={() => this.onVoteChange(1, id, votes)}
           />
-        </div>
-        <div>
+
           <i
             className="fa fa-arrow-circle-down"
             onClick={() => this.onVoteChange(-1, id, votes)}
           />
         </div>
-      </li>
+        <div className="post_card_container_votes">Votes:{votes}</div>
+      </div>
     );
   }
 }

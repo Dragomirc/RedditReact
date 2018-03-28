@@ -9,6 +9,10 @@ const {
 } = require("./queries");
 server.listen(PORT);
 
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "../../public/index.html");
+});
+
 io.on("connection", socket => {
   getPostsQuery().then(posts => {
     io.emit("initialPostList", posts);

@@ -48,10 +48,9 @@ class SinglePagePost extends Component {
       <div>
         <PostCard {...posts[this.id]} socket={this.props.socket} />
 
-        <div>{this.state.error}</div>
+        <div className="single_page_post_error">{this.state.error}</div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Comment:
             <textarea
               value={this.state.commentText}
               onChange={this.handleChange}

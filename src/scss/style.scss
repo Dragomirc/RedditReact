@@ -1,0 +1,65 @@
+@import "reset";
+
+$font-stack: Helvetica, sans-serif;
+$font-color: #000;
+$primary-color: #ffe0de;
+$secondary-color: #84adb2;
+
+.app_container {
+  width: 70%;
+  margin: 0 auto;
+  border: solid $secondary-color;
+}
+.post_card_container {
+  background: $primary-color;
+  margin: 10px;
+  padding: 10px;
+  border: double $secondary-color;
+  font-family: $font-stack;
+  i {
+    display: block;
+    cursor: pointer;
+    margin: 3px;
+  }
+}
+.post_card_container_icons,
+.post_card_container_votes {
+  display: inline-block;
+}
+.post_card_container_votes {
+  position: relative;
+  top: -9px;
+}
+.single_page_post_error {
+  color: red;
+  margin: 8px;
+}
+form {
+  margin: 8px;
+  textarea {
+    width: 50%;
+    height: 70px;
+  }
+  input {
+    position: relative;
+    top: -8px;
+    margin: 0 8px;
+  }
+}
+ul {
+  list-style: none;
+  li {
+    background: #ffe0de;
+    margin: 8px;
+    border: double $secondary-color;
+  }
+}
+
+a,
+a:hover,
+a:active,
+a:visited,
+a:focus {
+  text-decoration: none;
+  color: $font-color;
+}

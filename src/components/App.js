@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="app_container">
           <Route
             exact
             path="/"
