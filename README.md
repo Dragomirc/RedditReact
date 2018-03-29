@@ -1,12 +1,12 @@
 ## RedditReact
 
-Deployed [here](https://dragomirc.github.io/CFWebsocketApp/)
+
 
 A real-time web application where you can vote and add comments through socket.io
 
 ### Instructions on how to run the project
 
-1. `git clone https://github.com/Dragomirc/RedditReact.git`
+1. `git clone https://github.com/Dragomirc/RedditReact.git` && `cd RedditReact`
 
 2. `npm i`
 3. Set up a local database as per below instructions:
